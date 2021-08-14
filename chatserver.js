@@ -197,8 +197,8 @@ function handleWebRequest(req, res) {
 // Spin up the HTTPS server on the port assigned to this sample.
 // This will be turned into a WebSocket port very shortly.
 
-webServer.listen(3000, function () {
-  log("Server is listening on port 3000");
+webServer.listen(NODE_ENV.PORT || 3000, function () {
+  log("Server is listening on port " + NODE_ENV.PORT);
 });
 
 // Create the WebSocket server by converting the HTTPS server into one.
