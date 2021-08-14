@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>nihao</title>
+    <meta charset="utf-8" />
+    <link href="chat.css" rel="stylesheet" />
+    <link href="../shared.css" rel="stylesheet" />
+    <script src="https://aka.ms/csspeech/jsbrowserpackageraw"></script>
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1"
+    />
+    <script src="adapter.js"></script>
+  </head>
+  <body>
+    <video id="received-video" autoplay></video>
+    <video id="local-video" autoplay muted></video>
+    <div id="subtitles"></div>
+    <div class="controls">
+      <div>
+        <span>我说:</span>
+        <select id="language-source-selector">
+          <option value="en-AU">英文</option>
+          <option selected="selected" value="zh-CN">中文</option>
+        </select>
+      </div>
+      <button id="action-button" role="button">等待...</button>
+    </div>
+    <script type="text/javascript" src="chatclient.js"></script>
+  </body>
+</html>

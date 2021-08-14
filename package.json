@@ -1,0 +1,21 @@
+{
+  "name": "nihao",
+  "version": "1.0.0",
+  "description": "Video calls with live translation",
+  "homepage": "",
+  "bugs": "",
+  "license": "CC0",
+  "author": "Nathan Sherburn",
+  "main": "chatserver.js",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "scripts": {
+    "postinstall": "cp node_modules/webrtc-adapter/out/adapter.js ."
+  },
+  "dependencies": {
+    "webrtc-adapter": "^1.4.0",
+    "websocket": "^1.0.29"
+  }
+}
