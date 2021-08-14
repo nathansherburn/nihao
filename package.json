@@ -12,6 +12,7 @@
     "url": ""
   },
   "scripts": {
+    "start": "node chatserver.js",
     "postinstall": "cp node_modules/webrtc-adapter/out/adapter.js ."
   },
   "dependencies": {
