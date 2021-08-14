@@ -52,10 +52,10 @@ function connect() {
   var serverUrl;
   var scheme = "ws";
 
-  // if (document.location.protocol === "https:") {
-  //   scheme += "s";
-  // }
-  serverUrl = scheme + "://" + myHostname + ":3000";
+  if (document.location.protocol === "https:") {
+    scheme += "s";
+  }
+  serverUrl = scheme + "://" + myHostname// + ":3000";
 
   log(`Connecting to server: ${serverUrl}`);
   connection = new WebSocket(serverUrl, "json");
