@@ -55,7 +55,7 @@ function connect() {
   if (document.location.protocol === "https:") {
     scheme += "s";
   }
-  serverUrl = scheme + "://" + myHostname// + ":3000";
+  serverUrl = scheme + "://" + myHostname; // + ":3000";
 
   log(`Connecting to server: ${serverUrl}`);
   connection = new WebSocket(serverUrl, "json");
@@ -91,7 +91,7 @@ function connect() {
         break;
 
       case "message":
-        console.log(msg, myUsername)
+        console.log(msg, myUsername);
         if (msg.name !== myUsername) {
           document.querySelector("#subtitles").innerText = msg.text;
         }
@@ -169,10 +169,18 @@ async function createPeerConnection() {
   myPeerConnection = new RTCPeerConnection({
     iceServers: [
       // Information about ICE servers - Use your own!
+      // {
+      //   urls: "turn:" + myHostname, // A TURN server
+      //   username: "webrtc",
+      //   credential: "turnserver",
+      // },
       {
-        urls: "turn:" + myHostname, // A TURN server
-        username: "webrtc",
-        credential: "turnserver",
+        urls: [
+          "stun1.l.google.com:19302",
+          "stun2.l.google.com:19302",
+          "stun3.l.google.com:19302",
+          "stun4.l.google.com:19302",
+        ],
       },
     ],
   });
