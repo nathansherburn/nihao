@@ -68,15 +68,21 @@ body {
 
 #subtitles {
   position: absolute;
-  bottom: 300px;
-  left: 0;
   bottom: 100px;
-  color: yellow;
-  font-size: 64px;
+  left: 0;
+  z-index: 100;
+  font-size: 48px;
   -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: black;
-  z-index: 100;
   padding: 8px;
+}
+
+#local-subtitles {
+  color: yellow;
+}
+
+#received-subtitles {
+  color: lightblue;
 }
 
 .controls {

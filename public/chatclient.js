@@ -93,7 +93,7 @@ function connect() {
       case "message":
         console.log(msg, myUsername);
         if (msg.name !== myUsername) {
-          document.querySelector("#subtitles").innerText = msg.text;
+          document.querySelector("#received-subtitles").innerText = msg.text;
         }
         break;
 
@@ -723,7 +723,7 @@ function startContinuousRecognition() {
   recognizer.recognized = translateAndSend;
   function translateAndSend(s, e) {
     console.log("recognized text", e.result.text);
-    document.querySelector("#subtitles").innerText = e.result.text;
+    document.querySelector("#local-subtitles").innerText = e.result.text;
     let translation = e.result.translations.get(
       languageSourceSelector.value === "en-AU" ? "zh-Hans" : "en"
     );
