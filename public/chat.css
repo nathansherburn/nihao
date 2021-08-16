@@ -78,11 +78,11 @@ body {
 }
 
 #local-subtitles {
-  color: yellow;
+  color: lightblue;
 }
 
 #received-subtitles {
-  color: lightblue;
+  color: yellow;
 }
 
 .controls {
