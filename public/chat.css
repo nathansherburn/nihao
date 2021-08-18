@@ -10,7 +10,7 @@ body {
   width: 100%;
   overflow: hidden;
   background-color: black;
-  font-size: 24px;
+  font-size: 16px;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   display: flex;
   justify-content: center;
@@ -46,14 +46,17 @@ body {
   object-fit: cover;
 }
 
-#action-button {
-  font-size: 24px;
-  color: white;
+button {
+  font-size: 16px;
   border-radius: 8px;
   border: none;
   padding: 8px;
-  background-color: darkgray;
   padding: 8px 18px;
+}
+
+#action-button {
+  color: white;
+  background-color: darkgray;
 }
 
 .hangup {
@@ -93,12 +96,18 @@ body {
   padding: 8px;
   width: 100%;
   box-sizing: border-box;
-  display: flex;
   opacity: 80%;
-  justify-content: space-around;
-  align-items: center;
   background-color: #444;
   color: white;
+}
+
+.controls-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
 }
 
 select {

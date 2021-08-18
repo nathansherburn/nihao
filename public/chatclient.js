@@ -393,7 +393,6 @@ function closeVideoCall() {
 
 function handleHangUpMsg(msg) {
   log("*** Received hang up notification from other peer");
-  stopContinuousRecognition();
   closeVideoCall();
 }
 
@@ -405,7 +404,6 @@ function handleHangUpMsg(msg) {
 
 function hangUpCall() {
   closeVideoCall();
-  stopContinuousRecognition();
   sendToServer({
     name: myUsername,
     target: targetUsername,
@@ -689,16 +687,36 @@ function dragElement(elmnt) {
 // Translation stuff
 // ======
 var languageSourceSelector;
-var SpeechSDK;
 var recognizer;
 let apiKey;
+let sourceLanguage;
 
 apiKey = localStorage.getItem("key");
 if (!apiKey) {
   apiKey = prompt("向 Nathan 索取代码");
   localStorage.setItem("key", apiKey);
 }
-languageSourceSelector = document.getElementById("language-source-selector");
+let translateFromEnglish = document.getElementById("translate-from-english");
+let translateFromChinese = document.getElementById("translate-from-chinese");
+let stopTranslate = document.getElementById("stop-translate");
+
+translateFromEnglish.onclick = () => {
+  sourceLanguage = "en-AU";
+  startContinuousRecognition();
+  stopTranslate.disabled = false;
+  translateFromEnglish.disabled = true;
+  translateFromChinese.disabled = true;
+};
+
+translateFromChinese.onclick = () => {
+  sourceLanguage = "zh-CN";
+  startContinuousRecognition();
+  stopTranslate.disabled = false;
+  translateFromEnglish.disabled = true;
+  translateFromChinese.disabled = true;
+};
+
+stopTranslate.onclick = stopContinuousRecognition;
 
 function startContinuousRecognition() {
   console.log("startContinuousRecognition");
@@ -707,9 +725,9 @@ function startContinuousRecognition() {
     apiKey,
     "australiaeast"
   );
-  speechConfig.speechRecognitionLanguage = languageSourceSelector.value;
+  speechConfig.speechRecognitionLanguage = sourceLanguage;
   speechConfig.addTargetLanguage(
-    languageSourceSelector.value === "en-AU" ? "zh-CN" : "en-AU"
+    sourceLanguage === "en-AU" ? "zh-CN" : "en-AU"
   );
   var audioConfig = SpeechSDK.AudioConfig.fromDefaultMicrophoneInput();
   recognizer = new SpeechSDK.TranslationRecognizer(speechConfig, audioConfig);
@@ -725,7 +743,7 @@ function startContinuousRecognition() {
     console.log("recognized text", e.result.text);
     document.querySelector("#local-subtitles").innerText = e.result.text;
     let translation = e.result.translations.get(
-      languageSourceSelector.value === "en-AU" ? "zh-Hans" : "en"
+      sourceLanguage === "en-AU" ? "zh-Hans" : "en"
     );
     sendText(translation);
   }
@@ -737,6 +755,10 @@ function stopContinuousRecognition() {
       console.log("stopContinuousRecognitionAsync");
       document.querySelector("#local-subtitles").innerText = "";
       sendText("");
+      stopTranslate.disabled = true;
+      translateFromEnglish.disabled = false;
+      translateFromChinese.disabled = false;   
+      recognizer = null; 
     },
     (err) => console.log(err)
   );
