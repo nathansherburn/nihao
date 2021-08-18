@@ -56,16 +56,25 @@ button {
 
 #action-button {
   color: white;
-  background-color: darkgray;
-}
-
-.hangup {
-  background-color: darkred !important;
-  cursor: pointer;
 }
 
 .ready {
-  background-color: darkgreen !important;
+  background-color: dodgerblue;
+  cursor: pointer;
+}
+
+.waiting {
+  background-color: darkgray;
+  cursor: unset;
+}
+
+.answer {
+  background-color: darkgreen;
+  cursor: pointer;
+}
+
+.hangup {
+  background-color: darkred;
   cursor: pointer;
 }
 

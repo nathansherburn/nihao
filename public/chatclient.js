@@ -52,10 +52,14 @@ function connect() {
   var serverUrl;
   var scheme = "ws";
 
+  document.querySelector("#action-button").classList.add("waiting");
+  document.querySelector("#action-button").innerText = "等待...";
+
   if (document.location.protocol === "https:") {
     scheme += "s";
   }
-  serverUrl = scheme + "://" + myHostname; // + ":3000";
+  serverUrl =
+    scheme + "://" + myHostname + (location.port ? ":" + location.port : "");
 
   log(`Connecting to server: ${serverUrl}`);
   connection = new WebSocket(serverUrl, "json");
@@ -326,7 +330,7 @@ function handleUserlistMsg(msg) {
       return;
     }
     var actionButton = document.querySelector("#action-button");
-    actionButton.classList.add("ready");
+    actionButton.classList.add("answer");
     actionButton.innerText = "接听";
     actionButton.setAttribute("callerId", username);
     actionButton.onclick = invite;
@@ -489,7 +493,6 @@ async function handleVideoOfferMsg(msg) {
   actionButton.innerText = "挂断";
   actionButton.onclick = hangUpCall;
   console.log("handleVideoOfferMsg");
-  startContinuousRecognition();
 
   // If we're not already connected, create an RTCPeerConnection
   // to be linked to the caller.
@@ -632,7 +635,7 @@ function reportError(errMessage) {
 
 window.onload = function () {
   dragElement(document.querySelector("#local-video"));
-  connect();
+  document.querySelector("#action-button").onclick = connect;
 };
 
 // ======
@@ -758,8 +761,8 @@ function stopContinuousRecognition() {
       // sendText("");
       stopTranslate.disabled = true;
       translateFromEnglish.disabled = false;
-      translateFromChinese.disabled = false;   
-      recognizer = null; 
+      translateFromChinese.disabled = false;
+      recognizer = null;
     },
     (err) => console.log(err)
   );
@@ -886,7 +889,7 @@ var stunServers = [
   // "stun.voipinfocenter.com:3478",
   // "stun.voipplanet.nl:3478",
   "stun.voippro.com:3478",
-  "stun.voipraider.com:3478",
+  // "stun.voipraider.com:3478",
   "stun.voipstunt.com:3478",
   "stun.voipwise.com:3478",
   "stun.voipzoom.com:3478",
