@@ -388,7 +388,6 @@ function closeVideoCall() {
 
   // Disable the hangup button
 
-  document.getElementById("action-button").disabled = true;
   targetUsername = null;
 }
 
@@ -397,6 +396,10 @@ function closeVideoCall() {
 
 function handleHangUpMsg(msg) {
   log("*** Received hang up notification from other peer");
+  document.querySelector("#action-button").innerText = '准备好';
+  document.querySelector("#action-button").classList.remove('hangup','answer','waiting');
+  document.querySelector("#action-button").classList.add('ready');
+  document.querySelector("#action-button").onclick = connect;
   closeVideoCall();
 }
 
