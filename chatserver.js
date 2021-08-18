@@ -215,6 +215,7 @@ if (!wsServer) {
 // called whenever a user connects to the server's port using the
 // WebSocket protocol.
 wsServer.on("request", function (request) {
+  console.log('got a request: ', request);
   if (!originIsAllowed(request.origin)) {
     request.reject();
     log("Connection from " + request.origin + " rejected.");
