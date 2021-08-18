@@ -733,7 +733,11 @@ function startContinuousRecognition() {
 
 function stopContinuousRecognition() {
   recognizer.stopContinuousRecognitionAsync(
-    () => console.log("stopContinuousRecognitionAsync"),
+    () => {
+      console.log("stopContinuousRecognitionAsync");
+      document.querySelector("#local-subtitles").innerText = "";
+      sendText("");
+    },
     (err) => console.log(err)
   );
 }
