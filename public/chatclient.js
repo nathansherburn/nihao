@@ -885,7 +885,7 @@ var stunServers = [
   // "stun.voipinfocenter.com:3478",
   // "stun.voipplanet.nl:3478",
   "stun.voippro.com:3478",
-  "stun.voipraider.com:3478",
+  // "stun.voipraider.com:3478",
   "stun.voipstunt.com:3478",
   "stun.voipwise.com:3478",
   "stun.voipzoom.com:3478",
