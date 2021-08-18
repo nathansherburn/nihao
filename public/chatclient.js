@@ -690,6 +690,7 @@ var languageSourceSelector;
 var recognizer;
 let apiKey;
 let sourceLanguage;
+var SpeechSDK;
 
 apiKey = localStorage.getItem("key");
 if (!apiKey) {
@@ -754,7 +755,7 @@ function stopContinuousRecognition() {
     () => {
       console.log("stopContinuousRecognitionAsync");
       document.querySelector("#local-subtitles").innerText = "";
-      sendText("");
+      // sendText("");
       stopTranslate.disabled = true;
       translateFromEnglish.disabled = false;
       translateFromChinese.disabled = false;   
