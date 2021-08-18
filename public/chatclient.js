@@ -692,10 +692,10 @@ let apiKey;
 let sourceLanguage;
 var SpeechSDK;
 
-apiKey = localStorage.getItem("key");
+apiKey = localStorage.getItem("key1");
 if (!apiKey) {
   apiKey = prompt("向 Nathan 索取代码");
-  localStorage.setItem("key", apiKey);
+  localStorage.setItem("key1", apiKey);
 }
 let translateFromEnglish = document.getElementById("translate-from-english");
 let translateFromChinese = document.getElementById("translate-from-chinese");
