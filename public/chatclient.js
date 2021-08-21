@@ -396,9 +396,11 @@ function closeVideoCall() {
 
 function handleHangUpMsg(msg) {
   log("*** Received hang up notification from other peer");
-  document.querySelector("#action-button").innerText = '准备好';
-  document.querySelector("#action-button").classList.remove('hangup','answer','waiting');
-  document.querySelector("#action-button").classList.add('ready');
+  document.querySelector("#action-button").innerText = "准备好";
+  document
+    .querySelector("#action-button")
+    .classList.remove("hangup", "answer", "waiting");
+  document.querySelector("#action-button").classList.add("ready");
   document.querySelector("#action-button").onclick = connect;
   closeVideoCall();
 }
@@ -699,7 +701,8 @@ let sourceLanguage;
 var SpeechSDK;
 
 apiKey = localStorage.getItem("key1");
-if (!apiKey) {
+// null is a string because we don't bother JSON.parsing
+if (!apiKey || apiKey === "null") {
   apiKey = prompt("向 Nathan 索取代码");
   localStorage.setItem("key1", apiKey);
 }
