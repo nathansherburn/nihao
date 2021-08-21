@@ -100,23 +100,20 @@ button {
 .controls {
   position: absolute;
   bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   padding: 8px;
   width: 100%;
+  max-width: 960px;
   box-sizing: border-box;
   opacity: 80%;
   background-color: #444;
   color: white;
-}
-
-.controls-wrapper {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
 }
 
 select {
